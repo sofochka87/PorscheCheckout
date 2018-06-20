@@ -7,6 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BuyPorsche {
@@ -55,7 +58,8 @@ public class BuyPorsche {
 		// 6. Verify that Base price displayed on the page is same as the price from
 		// step 4
 		System.out.print("6.Verify that Base price displayed on the page is same as the price from step 4: ");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"s_price\"]/div[1]/div[1]/div[2]")));
 		basePrice2 = driver.findElement(By.xpath("//*[@id=\"s_price\"]/div[1]/div[1]/div[2]")).getText();
 		countSum(basePrice2, "56900");
 
@@ -157,7 +161,8 @@ public class BuyPorsche {
 		// 23.Select 7-speed Porsche Doppelkupplung (PDK)
 		driver.findElement(By.xpath("//*[@id=\"vs_table_IMG_x_M250_x_c11_M250\"]")).click();
 		System.out.println("23.Select 7-speed Porsche Doppelkupplung (PDK)");
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		
 
 		// 24.Select Porsche Ceramic Composite Brakes (PCCB)
 		jse.executeScript("window.scrollBy(0,500)", "");
@@ -186,7 +191,7 @@ public class BuyPorsche {
 		driver.close();
 
 		System.out.println();
-		System.out.println("TEST COMPLITED - " + LocalDateTime.now());
+		System.out.println("TEST COMPLETED - " + LocalDateTime.now());
 	}
 
 }
